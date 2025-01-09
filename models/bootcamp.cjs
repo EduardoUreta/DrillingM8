@@ -10,8 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      const { User, user_bootcamp } = models;
+      
+      this.belongsToMany(User, { through: user_bootcamp });
+    };
+
+    toJSON() {
+      const bootcamp = this.dataValues;
+      delete bootcamp.createdAt;
+      delete bootcamp.updatedAt;
+      return bootcamp;
     }
+    
   }
   Bootcamp.init({
     title: {
@@ -33,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Bootcamp',
+    paranoid: true
   });
   return Bootcamp;
 };

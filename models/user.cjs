@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { default: user_bootcamp } = require('./user_bootcamp.cjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -10,7 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      const { Bootcamp, user_bootcamp } = models;
+      
+      this.belongsToMany(Bootcamp, { through: user_bootcamp });
+    };
+
+    toJSON() {
+      const user = this.dataValues;
+      delete user.createdAt;
+      delete user.updatedAt;
+      return user;
     }
   }
   User.init({
@@ -36,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    paranoid: true
   });
   return User;
 };
