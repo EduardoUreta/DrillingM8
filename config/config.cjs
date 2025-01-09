@@ -1,6 +1,6 @@
-// db.config.cjs
 require('dotenv').config();
 
+// Ingresaarr 
 const envConfig = {
   "username": process.env.PG_USERNAME,
   "password": process.env.PG_PASSWORD,
