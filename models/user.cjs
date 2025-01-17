@@ -42,6 +42,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Ingresa un correo válido"
         }
       }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '',
+      validate: {
+        min: 8
+      }
     }
   }, {
     sequelize,
