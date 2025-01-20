@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
   Bootcamp.init({
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true,
     },
     cue: {
       type: DataTypes.INTEGER,

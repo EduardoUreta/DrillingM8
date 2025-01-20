@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const { default: user_bootcamp } = require('./user_bootcamp.cjs');
+const { hash } = require("argon2");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -54,7 +54,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
-    paranoid: true
+    paranoid: true,
+    hooks: {
+      beforeSave: async (user, options) => {
+        if(user.changed('password')){
+          user.password = await hash(user.password);
+        }
+      }
+    }
   });
   return User;
 };

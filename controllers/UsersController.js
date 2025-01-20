@@ -3,16 +3,6 @@ const { User, Bootcamp } = db.default;
 
 export const UsersController = {};
 
-UsersController.create = async (req, res, next) => {
-    const data = req.body;
-    try {
-      const user = await User.create(data);
-      return res.status(201).json({message: {"Usuario Creado": user}});
-    } catch (error) {
-        next(error);
-    };
-};
-
 UsersController.findById = async (req, res, next) => {
     const id = req.params.id;
     try {

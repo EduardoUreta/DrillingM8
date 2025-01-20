@@ -16,5 +16,9 @@ export const errorHandler = async (error, req, res, next) => {
         return res.status(400).json(errorMessages);
     };
 
+    if(error?.cause == 'INVALID_CREDENTIALS'){
+        return res.status(500).json({message: "No estás logueado"});
+    }
+
     return res.status(500).json({message: "Internal Server Error"});
 };

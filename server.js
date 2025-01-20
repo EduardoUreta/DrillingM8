@@ -1,15 +1,18 @@
 import express from "express";
-import { BootcampsRouter, UsersRouter } from "./router/index.js";
+import { BootcampsRouter, SessionsRouter, UsersRouter } from "./router/index.js";
 import { errorHandler } from "./middlewares/Errors.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+app.use(cookieParser());
 
-app.use("/users", UsersRouter);
-app.use("/bootcamps", BootcampsRouter);
+app.use("/api/user", UsersRouter);
+app.use("/api/bootcamp", BootcampsRouter);
+app.use("/api", SessionsRouter);
 
 app.use(errorHandler);
 

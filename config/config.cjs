@@ -8,6 +8,7 @@ const envConfig = {
   "host": process.env.PG_HOST,
   "dialect": "postgres",
   "port": process.env.PG_PORT,
+  JWT_SECRET: process.env.JWT_SECRET
 };
 
 module.exports = envConfig;

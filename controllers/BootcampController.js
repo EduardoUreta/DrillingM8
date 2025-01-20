@@ -17,7 +17,7 @@ BootcampController.addUser = async(req, res, next) => {
     const data = req.body;
     try {
         const addUserToBootcamp = await user_bootcamp.addUser(data);
-        return res.status(201).json({message: {"Usuario agregado al bootcamp": addUserToBootcamp}});
+        return res.status(201).json({"Usuario agregado al bootcamp": addUserToBootcamp});
     } catch (error) {
         next(error);
     }

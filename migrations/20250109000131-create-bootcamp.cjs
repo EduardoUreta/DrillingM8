@@ -11,7 +11,8 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
       },
       cue: {
         type: Sequelize.INTEGER,
